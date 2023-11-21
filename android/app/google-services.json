@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "598532534068",
+    "project_id": "highest-dimension",
+    "storage_bucket": "highest-dimension.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:598532534068:android:4353e546642b3a033bbf61",
+        "android_client_info": {
+          "package_name": "dk.wejeo.highest_dimension"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDT99uret9aUzZCRTxn1XuaL276fJSFTw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
