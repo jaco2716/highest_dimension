@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Image.asset("assets/images/pearl_icon.png", width: 80),
+              Image.asset("assets/images/pearl.png", width: 90),
               const SizedBox(height: 0, width: double.infinity),
               const Expanded(child: QuotePageView()),
             ],

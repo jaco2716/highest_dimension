@@ -10,7 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../quote.dart';
 
-class FirestoreDataProvider extends ChangeNotifier {
+class AppDataProvider extends ChangeNotifier {
   final FirestoreHandler _firestoreHandler = FirestoreHandler();
   late List<Quote> quoteList;
   late AppDataSettings appDataSettings;
@@ -18,23 +18,17 @@ class FirestoreDataProvider extends ChangeNotifier {
 
   getData() async {
     quoteList = await _firestoreHandler.getQuotes();
-    print('hellow');
 
     await getAppData();
     notifyListeners();
   }
 
   getAppData() async {
-    print('hellow2');
     prefs = await SharedPreferences.getInstance();
-    print('dateNow1');
     String? appDataString = prefs.getString(SharedPrefNames.appDataSettings.name);
-    print('dateNow2');
     DateFormat df = DateFormat('dd/MM/yyyy');
-    print('dateNow3');
     var dateNow = DateTime.now();
     var dateString = df.format(dateNow);
-    print(dateString);
     if (appDataString != null && appDataString.isNotEmpty) {
       // Not first time
       Map<String, dynamic> appDataJson = jsonDecode(appDataString);
@@ -69,5 +63,11 @@ class FirestoreDataProvider extends ChangeNotifier {
     } else {
       return false;
     }
+  }
+
+  void setAdvancedSettings(bool value) async {
+    appDataSettings.showAdvancedSettings = value;
+    await prefs.setString(SharedPrefNames.appDataSettings.name, jsonEncode(appDataSettings));
+    notifyListeners();
   }
 }

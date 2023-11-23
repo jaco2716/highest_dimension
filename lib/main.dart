@@ -2,11 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:highest_dimension/constants/style_config.dart';
-import 'package:highest_dimension/model/providers/firestore_data_provider.dart';
+import 'package:highest_dimension/model/providers/app_data_provider.dart';
 import 'package:provider/provider.dart';
 // import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
+import 'model/providers/auth_app_state.dart';
 import 'pages/home/home_page.dart';
 
 void main() async {
@@ -18,7 +19,8 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider<FirestoreDataProvider>(create: (context) => FirestoreDataProvider()),
+        ChangeNotifierProvider<AppDataProvider>(create: (context) => AppDataProvider()),
+        ChangeNotifierProvider<AuthAppState>(create: (context) => AuthAppState()),
       ],
       child: const MyApp(),
     ),
@@ -37,7 +39,7 @@ class _MyAppState extends State<MyApp> {
   late Future<void> getData;
   @override
   void initState() {
-    getData = context.read<FirestoreDataProvider>().getData();
+    getData = context.read<AppDataProvider>().getData();
     super.initState();
   }
 

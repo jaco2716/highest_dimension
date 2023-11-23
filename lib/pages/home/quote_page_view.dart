@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:highest_dimension/model/providers/firestore_data_provider.dart';
+import 'package:highest_dimension/model/providers/app_data_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -25,7 +25,7 @@ class _QuotePageViewState extends State<QuotePageView> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<FirestoreDataProvider>(builder: (context, value, _) {
+    return Consumer<AppDataProvider>(builder: (context, value, _) {
       List<Quote> quotes = value.quoteList;
 
       return PageView.builder(

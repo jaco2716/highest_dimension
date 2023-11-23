@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../model/providers/firestore_data_provider.dart';
+import '../model/providers/app_data_provider.dart';
 import '../model/quote.dart';
 import '../widgets/my_elevated_button.dart';
 import '../widgets/my_info_dialog.dart';
@@ -36,7 +36,7 @@ class _ManageQuotesPageState extends State<ManageQuotesPage> {
           vertical: 10,
           horizontal: 20,
         ),
-        child: Consumer<FirestoreDataProvider>(builder: (context, value, _) {
+        child: Consumer<AppDataProvider>(builder: (context, value, _) {
           List<Quote> quotes = value.quoteList;
           return Column(children: [
             MyElevatedButton(
@@ -82,12 +82,12 @@ class _ManageQuotesPageState extends State<ManageQuotesPage> {
                                           children: [
                                             TextButton(
                                               child: const Text('Cancel'),
-                                              onPressed: () {},
+                                              onPressed: () => Navigator.pop(context),
                                             ),
                                             TextButton(
                                               style: TextButton.styleFrom(foregroundColor: Colors.red),
                                               child: const Text('Delete'),
-                                              onPressed: () {},
+                                              onPressed: () => deleteQuote(quotes[index].id),
                                             ),
                                           ],
                                         ),
@@ -113,7 +113,7 @@ class _ManageQuotesPageState extends State<ManageQuotesPage> {
   }
 
   void deleteQuote(String id) async {
-    var result = await context.read<FirestoreDataProvider>().deleteQuote(id, (message) {
+    var result = await context.read<AppDataProvider>().deleteQuote(id, (message) {
       showDialog(
         context: context,
         builder: (context) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:highest_dimension/model/providers/firestore_data_provider.dart';
+import 'package:highest_dimension/model/providers/app_data_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../model/quote.dart';
@@ -76,7 +76,7 @@ class _AddQuotesPageState extends State<AddQuotesPage> {
                   onPressed: () async {
                     _formKey.currentState!.save();
 
-                    bool result = await context.read<FirestoreDataProvider>().addQuote(newQuote, (message) {
+                    bool result = await context.read<AppDataProvider>().addQuote(newQuote, (message) {
                       showDialog(
                         context: context,
                         builder: (context) {
