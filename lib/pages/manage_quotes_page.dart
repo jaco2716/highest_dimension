@@ -16,15 +16,6 @@ class ManageQuotesPage extends StatefulWidget {
 }
 
 class _ManageQuotesPageState extends State<ManageQuotesPage> {
-  // late List<Quote> quotes;
-
-  // @override
-  // void initState() {
-  //   quotes = context.read<FirestoreDataProvider>().quoteList ?? [];
-
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

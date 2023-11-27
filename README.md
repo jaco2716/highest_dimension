@@ -65,6 +65,24 @@ flutter_launcher_icons:
 
 ---
 
+### Native Splash Image
+
+```yaml
+dependencies:
+  flutter_native_splash:
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: "assets/icon/icon-android.png"
+  android_12:
+    color: "#ffffff"
+    icon_background_color: "#ffffff"
+```
+
+- dart run flutter_native_splash:create
+
+---
+
 ## Useful config setup
 
 ### IOS - NonExemptEncryption:false

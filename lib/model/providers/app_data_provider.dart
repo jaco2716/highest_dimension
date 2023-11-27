@@ -8,6 +8,7 @@ import 'package:highest_dimension/model/app_data_settings.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../constants/value_constants.dart';
 import '../quote.dart';
 
 class AppDataProvider extends ChangeNotifier {
@@ -24,21 +25,27 @@ class AppDataProvider extends ChangeNotifier {
   }
 
   getAppData() async {
+    print('hellow');
     prefs = await SharedPreferences.getInstance();
     String? appDataString = prefs.getString(SharedPrefNames.appDataSettings.name);
     DateFormat df = DateFormat('dd/MM/yyyy');
     var dateNow = DateTime.now();
+    var startDate = DateTime(dateNow.year, dateNow.month, dateNow.day);
     var dateString = df.format(dateNow);
     if (appDataString != null && appDataString.isNotEmpty) {
       // Not first time
       Map<String, dynamic> appDataJson = jsonDecode(appDataString);
       appDataSettings = AppDataSettings.fromJson(appDataJson);
-      if (appDataSettings.lastOpenDate != dateString) {}
     } else {
       // First time
-      appDataSettings = AppDataSettings(dateNow.millisecondsSinceEpoch, dateString);
+      appDataSettings = AppDataSettings(startDate.millisecondsSinceEpoch, dateString);
       prefs.setString(SharedPrefNames.appDataSettings.name, jsonEncode(appDataSettings));
     }
+    print('startdate: ${DateTime.fromMillisecondsSinceEpoch(appDataSettings.startDate)}');
+
+    appDataSettings.daysOpened = ((dateNow.millisecondsSinceEpoch - appDataSettings.startDate) / kMillisecondsInDay).truncate();
+
+    print('days opened: ${appDataSettings.daysOpened}');
   }
 
   Future<bool> addQuote(Quote quote, void Function(String) errorCallback) async {

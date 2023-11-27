@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:highest_dimension/pages/admin_login_page.dart';
+import 'package:highest_dimension/pages/coming_soon_page.dart';
 import 'package:highest_dimension/pages/manage_quotes_page.dart';
 import 'package:highest_dimension/widgets/my_elevated_button.dart';
 import 'package:provider/provider.dart';
@@ -84,7 +85,7 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Container(
               width: 50,
               height: 50,
-              color: Colors.red,
+              color: Colors.transparent,
             ),
           )
         ],
@@ -113,7 +114,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ManageQuotesPage(),
+                          builder: (context) => const ComingSoonPage(),
                         ));
                   }),
               const SizedBox(height: 20),
@@ -123,7 +124,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ManageQuotesPage(),
+                          builder: (context) => const ComingSoonPage(),
                         ));
                   }),
               const SizedBox(height: 20),

@@ -41,6 +41,7 @@ dependencies:
   cloud_firestore: ^4.12.2
   shared_preferences: ^2.2.2
   firebase_auth: ^4.14.1
+  flutter_native_splash: ^2.3.6
 
 dev_dependencies:
   flutter_test:
@@ -110,3 +111,10 @@ flutter_launcher_icons:
   #Forground image needs to be max 682px icon inside 1024px image with transparent border
   adaptive_icon_foreground: "assets/icon/icon-android.png"
   adaptive_icon_background: "#ffffff"
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: "assets/icon/icon-android.png"
+  android_12:
+    color: "#ffffff"
+    icon_background_color: "#ffffff"

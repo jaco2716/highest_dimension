@@ -14,7 +14,7 @@ class QuotePageView extends StatefulWidget {
 }
 
 class _QuotePageViewState extends State<QuotePageView> {
-  final PageController _pageController = PageController();
+  late PageController _pageController;
   // late List<Quote> quotes;
   // @override
   // void initState() {
@@ -27,14 +27,16 @@ class _QuotePageViewState extends State<QuotePageView> {
   Widget build(BuildContext context) {
     return Consumer<AppDataProvider>(builder: (context, value, _) {
       List<Quote> quotes = value.quoteList;
-
+      _pageController = PageController(initialPage: value.appDataSettings.daysOpened < quotes.length ? value.appDataSettings.daysOpened : 0);
+      var dateNow = DateTime.now();
       return PageView.builder(
         // onPageChanged: (value) {},
         controller: _pageController,
         itemCount: quotes.length,
         itemBuilder: (context, index) {
           DateFormat df = DateFormat('dd/MM');
-          var date = df.format(DateTime.fromMillisecondsSinceEpoch(quotes[index].dateCreated));
+          var day = dateNow.add(Duration(days: index - _pageController.initialPage));
+          var date = df.format(day);
 
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
